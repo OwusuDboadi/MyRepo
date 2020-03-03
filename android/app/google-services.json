@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "952782089758",
+    "firebase_url": "https://census-app-671dd.firebaseio.com",
+    "project_id": "census-app-671dd",
+    "storage_bucket": "census-app-671dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:952782089758:android:69c77a59eb529cb52e080f",
+        "android_client_info": {
+          "package_name": "com.example.censorapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "952782089758-91ba8ijkbre4fdd3nj1m02poeu3ns40q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDK2DGWuXeSsmTAlB9uTkH8lgmfEY_SsYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "952782089758-91ba8ijkbre4fdd3nj1m02poeu3ns40q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
