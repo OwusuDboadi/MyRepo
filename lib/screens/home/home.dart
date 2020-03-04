@@ -1,54 +1,46 @@
-import 'package:flutter/material.dart';
-import 'package:censorapp/models/census_model.dart';
-import 'package:censorapp/screens/home/census.dart';
+
 import 'package:censorapp/services/auth.dart';
-import 'package:censorapp/services/database.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:censorapp/screens/home/census_list.dart';
+import 'package:censorapp/services/database.dart';
+
+import 'package:censorapp/screens/home/citizen_list.dart';
+import 'package:censorapp/models/citizen.dart';
 
 class Home extends StatelessWidget {
-  final AuthService _auth= AuthService();
+
+  final AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
-    void _showCensusPanel() {
-      showModalBottomSheet(context: context, builder: (context) {
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-          child: Census(),
-        );
-      });
-    }
-
-    return StreamProvider<List<census_model>>.value(
-      value: DatabaseService().census,
-      child: Scaffold(
-        backgroundColor:  Colors.blueGrey[50],
-        appBar:  AppBar(
-          title: Text('Ozone'),
-          backgroundColor: Colors.blueGrey[400],
-          elevation: 0.0,
-          actions: <Widget>[
-            FlatButton.icon(
-              icon: Icon(Icons.person,
-                  color: Colors.cyanAccent),
-              label: Text('Logout',
-                style: TextStyle(color: Colors.white ),),
-              onPressed: () async{
-                await _auth.signOut();
-              },
+    return StreamProvider<List<Citizen>>.value(
+     value: DatabaseService().citizen,
+     child:Scaffold(
+      backgroundColor: Colors.brown[50],
+      appBar: AppBar(
+        title: Text("Censor Application"),
+        backgroundColor: Colors.brown[400],
+        elevation: 0.0,
+        actions: <Widget>[
+//          FlatButton.icon(
+//            icon: Icon(Icons.person),
+//            label: Text('logout'),
+//            onPressed: () async{
+//              await _auth.signOut();
+//             // Navigator.push(context,     MaterialPageRoute(builder: (context) => SignIn()));
+//            },
+//                ),
+          FlatButton.icon(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.add_a_photo),
+            label: Text('Add Citizen'),
+          ),
+              ]
             ),
-            FlatButton.icon(
-              icon: Icon(Icons.message,
-                  color: Colors.cyanAccent),
-              label: Text('New Census',
-                style: TextStyle(color: Colors.white ),),
-              onPressed: () => _showCensusPanel(),
-            )
-          ],
-        ),
-        body: CensusList(),
-
-      ),
+        body: CitizenList(),
+    )
     );
   }
 }

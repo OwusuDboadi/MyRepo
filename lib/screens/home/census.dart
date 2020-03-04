@@ -1,6 +1,6 @@
+import 'package:censorapp/screens/home/home.dart';
 import 'package:censorapp/shared/loading.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:censorapp/services/auth.dart';
 import 'package:censorapp/shared/constants.dart';
 import 'package:flutter/services.dart';
@@ -31,7 +31,8 @@ class _CensusState extends State<Census> {
   String address ='';
   String gender = '';
   String error = '';
-  String _currentGender ;
+  bool viewer  = false;
+ // String _currentGender ;
  // String cpassword = '';
 
   @override
@@ -43,14 +44,27 @@ class _CensusState extends State<Census> {
         elevation: 0.0,
         title: Text('Sign Up to CensorApp'),
         actions: <Widget>[
+
+        FlatButton.icon(
+        icon: Icon(Icons.person),
+        label: Text('logout'),
+        onPressed: () async{
+          await _auth.signOut();
+          // Navigator.push(context,     MaterialPageRoute(builder: (context) => SignIn()));
+        }
+      ) ,
           FlatButton.icon(
-              onPressed: () async {
-            await _auth.signOut();
-          },
-              icon: Icon(Icons.person),
-              label: Text('logout'))
+            onPressed: () {
+              Navigator.push(context,     MaterialPageRoute(builder: (context) => Home()), );
+            },
+            icon: Icon(Icons.add_shopping_cart),
+            label: Text('View Citizens'),
+          ),
+
         ],
       ),
+
+
         body: Container(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
         child: Form(
@@ -145,7 +159,7 @@ class _CensusState extends State<Census> {
                       if(_formKey.currentState.validate()){
                         //setState(() => loading = true);
                         await _auth.fillOutCensusForm(firstName, lastName, age, gender, address);
-
+                        Navigator.push(context,     MaterialPageRoute(builder: (context) => Home()), );
                         //dynamic result = await _auth.registerWithEmailAndPassword(email,  password);
 //                        if(result == null){
 //                          setState(() {
@@ -159,6 +173,8 @@ class _CensusState extends State<Census> {
                       }
                     },
                   ),
+
+
                   SizedBox(height: 12.0),
                   Text(
                     error,
@@ -171,5 +187,16 @@ class _CensusState extends State<Census> {
         ),
       ),
     );
+  }
+}
+
+
+class Viewer extends StatelessWidget {
+
+  Viewer();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }

@@ -1,6 +1,6 @@
 import 'package:censorapp/screens/authenticate/authenticate.dart';
 import 'package:censorapp/screens/home/census.dart';
-import 'package:censorapp/screens/home/home.dart';
+//import 'package:censorapp/screens/home/home.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:censorapp/models/user.dart';
